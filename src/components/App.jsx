@@ -13,7 +13,6 @@ const {
 
 const {StylePropable, StyleResizable} = Mixins;
 let ThemeManager = Styles.ThemeManager;
-//let DefaultRawTheme = Styles.lightBaseTheme;
 let DarkRawTheme = Styles.darkBaseTheme;
 
 class App extends React.Component {
@@ -47,11 +46,10 @@ class App extends React.Component {
 
     render() {
         return (
-            <section>
-                <AppBar title="Weatherlicious"
-                />
+            <div>
+                <AppBar title="Weatherlicious" />
                 <PanelList />
-            </section>
+            </div>
         );
     }
 }

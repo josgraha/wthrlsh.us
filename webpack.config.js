@@ -24,15 +24,18 @@ module.exports = {
                 test: /\.jsx?$/,
                 include: path.join(__dirname, 'src'),
                 loader: 'react-hot!babel'
-                // loader: 'babel-loader',
-                // query: {
-                //     presets: ["react", "es2015", "stage-0"]
-                // }
             },
             {
                 test: /\.scss$/,
                 include: path.join(__dirname, 'src'),
                 loader: 'style!css!sass'
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
             }
         ]
     }

@@ -32,7 +32,9 @@
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "image-webpack-loader": "^1.6.2"
+  },
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
