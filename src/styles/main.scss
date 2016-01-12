@@ -2,8 +2,43 @@
  * Main SASS styles
  */
 
-$background-color: rgb(48, 48, 48);
+ $bglist: acHKodQ, AnrjBJN, djY3iNP, p550mah, WaFOpxG;
+ $imgKey: random(length($bglist));
+ $bg-body-nth: nth($bglist, $imgKey);
+ $dark-grey: rgb(48, 48, 48);
+ $cyan-900: #006064;
+
+ @mixin linear-gradient($direction, $color-stops...) {
+   background: nth(nth($color-stops, 1), 1);
+   background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+   background: linear-gradient($direction, $color-stops);
+ }
+
+// generic transform
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+$tx-rotate-class: tx-rotate !default
+
+@for $i from 0 through 360 {
+  .#{$tx-rotate-class}-#{$i} {
+    @include rotate($i);
+  }
+}
 
 body {
-    background-color: $background-color;
+    background-color: $dark-grey;
+    // background-image: linear-gradient($cyan-900, $dark-grey);
+    background-image: url('/assets/images/#{$bg-body-nth}.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

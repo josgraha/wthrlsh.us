@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg fill-opacity="1" xmlns:xlink="http://www.w3.org/1999/xlink" color-rendering="auto" color-interpolation="auto" text-rendering="auto" stroke="white" stroke-linecap="square" stroke-miterlimit="10" shape-rendering="auto" stroke-opacity="1" fill="black" stroke-dasharray="none" font-weight="normal" stroke-width="1" xmlns="http://www.w3.org/2000/svg" font-family="&apos;Dialog&apos;" font-style="normal" stroke-linejoin="miter" font-size="12" stroke-dashoffset="0" image-rendering="auto">
+  <!--Unicode Character 'DEGREE FAHRENHEIT' (U+2109)-->
+  <defs id="genericDefs" />
+  <g>
+    <g>
+      <path d="M51.6094 177.0469 Q67.6406 177.0469 79.0312 188.5078 Q90.4219 199.9688 90.4219 216 Q90.4219 232.1719 78.9609 243.6328 Q67.5 255.0938 51.6094 255.0938 Q35.5781 255.0938 24.1172 243.6328 Q12.6562 232.1719 12.6562 216 Q12.6562 199.8281 24.0469 188.4375 Q35.4375 177.0469 51.6094 177.0469 ZM51.6094 239.9062 Q61.3125 239.9062 68.2734 232.875 Q75.2344 225.8438 75.2344 216 Q75.2344 206.1562 68.2734 199.2656 Q61.3125 192.375 51.6094 192.375 Q41.7656 192.375 34.875 199.2656 Q27.9844 206.1562 27.9844 216 Q27.9844 225.8438 34.875 232.875 Q41.7656 239.9062 51.6094 239.9062 ZM251.4375 204.1875 L139.6406 204.1875 L139.6406 268.0312 L236.3906 268.0312 L236.3906 292.5 L139.6406 292.5 L139.6406 385.875 L112.3594 385.875 L112.3594 179.7188 L251.4375 179.7188 L251.4375 204.1875 Z" stroke="none" />
+    </g>
+  </g>
+</svg>

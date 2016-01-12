@@ -1,6 +1,6 @@
 import React from 'react';
 import mui from 'material-ui';
-import PanelList from './PanelList.jsx';
+import PanelDashboard from './PanelDashboard.jsx';
 
 let injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
@@ -9,7 +9,7 @@ const {
     AppBar,
     Mixins,
     Styles,
-    } = mui;
+} = mui;
 
 const {StylePropable, StyleResizable} = Mixins;
 let ThemeManager = Styles.ThemeManager;
@@ -48,7 +48,7 @@ class App extends React.Component {
         return (
             <div>
                 <AppBar title="Weatherlicious" />
-                <PanelList />
+                <PanelDashboard city="newyork" />
             </div>
         );
     }
