@@ -1,6 +1,6 @@
 import React from 'react';
+import Card from 'material-ui/lib/card/card';
 import ActionRoom from 'material-ui/lib/svg-icons/action/room';
-import {Grid, Row, Col} from 'react-bootstrap';
 import Firebase from 'firebase';
 import _ from 'lodash';
 
@@ -42,6 +42,7 @@ class CurrentPanel extends React.Component {
 
     weatherIcon(currentlyObj) {
         let iconSuffix = this.iconFor(currentlyObj);
+        console.log('iconSuffix: ' +  iconSuffix);
         return `icon-weather-${iconSuffix}-dims`;
     }
 
@@ -59,21 +60,38 @@ class CurrentPanel extends React.Component {
     }
 
     render() {
+        let wxCurrIconClass = 'wx-gauge-icon-med ' + this.weatherIcon(this.state.currently);
         return (
-            <Grid>
-                <Row>
-                    <Col xs={6} sm={3}>
-                        <i className={['weather-icon-med', this.weatherIcon(this.state.currently)]} />
-                    </Col>
-                    <Col xs={6} sm={3}>
-                        <span>{this.state.currently.temperature}</span>
-                    </Col>
-                    <Col xs={6} sm={3}>
-                        <i className={['weather-icon-med', 'icon-well-med', 'icon-weather-degree-f-dim']} />
-                    </Col>
-                    <Col xs={6} sm={3}><ActionRoom className={this.state.rotateClass} /></Col>
-                </Row>
-            </Grid>
+        <Card>
+            <div style={{
+                display: 'flex',
+                flexFlow: 'row wrap',
+                maxWidth: 1200,
+                width: '100%'
+            }}>
+                <Card className={"wx-gauge"} style={{
+                        flexGrow: 1
+                      }}>
+                    <div className={"wx-curr-condition"}>
+                        <i className={wxCurrIconClass}></i>
+                    </div>
+                </Card>
+                <Card className={"wx-gauge"} style={{
+                        flexGrow: 1
+                      }}>
+                    <div className={"wx-curr-temp"}>
+                        <span className="wx-gauge-large">{this.state.currently.temperature} <sup>°F</sup></span>
+                    </div>
+                </Card>
+                <Card className={"wx-gauge"} style={{
+                        flexGrow: 1
+                      }}>
+                    <div className={"wx-curr-wind-dir"}>
+                        <span><ActionRoom className={this.state.rotateClass} /></span>
+                    </div>
+                </Card>
+            </div>
+        </Card>
         );
     }
 }

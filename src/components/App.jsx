@@ -6,7 +6,12 @@ let injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 const {
-    AppBar,
+    Toolbar,
+    ToolbarGroup,
+    ToolbarTitle,
+    FontIcon,
+    DropDownMenu,
+    MenuItem,
     Mixins,
     Styles,
 } = mui;
@@ -47,7 +52,17 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <AppBar title="Weatherlicious" />
+                <Toolbar>
+                    <ToolbarGroup firstChild={true} float={"left"}>
+                        <ToolbarTitle text={"City"} />
+                        <FontIcon className="muidocs-icon-edit-location" />
+                        <DropDownMenu value={2}>
+                            <MenuItem value={1} primaryText="Chicago" />
+                            <MenuItem value={2} primaryText="New York" />
+                            <MenuItem value={3} primaryText="San Francisco" />
+                        </DropDownMenu>
+                    </ToolbarGroup>
+                </Toolbar>
                 <PanelDashboard city="newyork" />
             </div>
         );
