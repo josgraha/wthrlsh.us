@@ -1,7 +1,6 @@
 import React from 'react';
 import CurrentPanel from './Current/CurrentPanel.jsx';
 
-
 class PanelDashboard extends React.Component {
     constructor(props) {
         super();

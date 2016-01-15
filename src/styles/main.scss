@@ -2,13 +2,16 @@
  * Main SASS styles
  */
 
- $bglist: acHKodQ, AnrjBJN, djY3iNP, p550mah, WaFOpxG;
- $imgKey: random(length($bglist));
- $bg-body-nth: nth($bglist, $imgKey);
- $dark-grey: rgb(48, 48, 48);
- $cyan-900: #006064;
+$bglist: acHKodQ, p550mah, WaFOpxG;
+$imgKey: random(length($bglist));
+$bg-body-nth: nth($bglist, $imgKey);
+$dark-grey: rgb(48, 48, 48);
+$cyan-900: #006064;
+$lrg-scale-factor: 3;
+$lrg-offset-x: 10;
+$lrg-offset-y: 40;
 
- @mixin linear-gradient($direction, $color-stops...) {
+@mixin linear-gradient($direction, $color-stops...) {
    background: nth(nth($color-stops, 1), 1);
    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
    background: linear-gradient($direction, $color-stops);
@@ -26,24 +29,45 @@
   @include transform(rotate(#{$deg}deg));
 }
 
-$tx-rotate-class: tx-rotate !default
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+@mixin transform-origin ($origin) {
+  moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+// matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY()):
+@mixin matrix($matrix) {
+  @include transform(matrix($matrix));
+}
+
+$tx-rotate-lrg-class: tx-rotate-lrg !default
 
 @for $i from 0 through 360 {
-  .#{$tx-rotate-class}-#{$i} {
-    @include rotate($i);
+  .#{$tx-rotate-lrg-class}-#{$i} {
+    @include transform(matrix($lrg-scale-factor, 0, 0, $lrg-scale-factor, $lrg-offset-x, $lrg-offset-y) rotate(#{$i - 180}deg));
   }
 }
 
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-    background-color: $dark-grey;
-    // background-image: linear-gradient($cyan-900, $dark-grey);
+    // background-color: $dark-grey;
+    //background-image: linear-gradient($cyan-900, $dark-grey);
     background-image: url('/assets/images/#{$bg-body-nth}.jpg');
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .wx-gauge {
-  width: '100%'
+  text-align: center;
 }
 
 .wx-gauge-icon-med {
@@ -51,3 +75,32 @@ body {
   height: 48px;
 }
 
+.wx-gauge-icon-lrg {
+  width: 144px;
+  height: 144px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wx-curr-condition {
+  with: 144px;
+  height: 144px;
+}
+
+.wx-gauge-large {
+  color: #001A33;
+}
+
+.wx-curr-temp {
+  font-size: 2.75rem;
+  margin-top: 20px;
+  color: darkviolet;
+}
+
+.wx-curr-temp sup {
+  font-size: 1.5rem;
+}
+
+.wx-gauge-icon-lrg.wx-curr-wind-dir > svg {
+  fill-opacity: 0.8;
+}

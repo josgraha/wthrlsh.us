@@ -1,98 +1,91 @@
 import React from 'react';
-import Card from 'material-ui/lib/card/card';
-import ActionRoom from 'material-ui/lib/svg-icons/action/room';
+import mui from 'material-ui';
+import ScheduleIcon from 'material-ui/lib/svg-icons/action/schedule';
 import Firebase from 'firebase';
 import _ from 'lodash';
+import CurrentCondition from './CurrCondition.jsx';
+import CurrentTemp from './CurrTemp.jsx';
+import CurrentWindDirection from './CurrWindDirection.jsx';
+import Actions from '../../actions';
+import connectToStores from 'alt/utils/connectToStores';
+import CurrentStore from '../../stores/CurrentStore';
 
+const {
+  Card,
+  CircularProgress,
+  CardHeader,
+  Avatar
+  } = mui;
+
+const colors = mui.Styles.Colors;
+
+@connectToStores
 class CurrentPanel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currently: {
-                apparentTemperature: 25.71,
-                cloudCover: 0.01,
-                dewPoint: 12.54,
-                humidity: 0.4,
-                icon: "clear-day",
-                nearestStormBearing: 290,
-                nearestStormDistance: 15,
-                ozone: 336.13,
-                precipIntensity: 0,
-                precipProbability: 0,
-                pressure: 1013.26,
-                summary: "Clear",
-                temperature: 34.49,
-                time: 1452540354,
-                visibility: 10,
-                windBearing: 253,
-                windSpeed: 12.51
-            }
-        };
-        this.state.weatherIcon = this.weatherIcon(this.state.currently);
-        this.state.rotateClass = this.rotateClassFor(this.state.currently);
-        this.firebaseRef = new Firebase(`https://publicdata-weather.firebaseio.com/${this.props.city}/currently`);
-        this.firebaseRef.on("value", (dataSnapshot)=> {
-          this.setState({
-              currently: dataSnapshot.val(),
-              weatherIcon: this.weatherIcon(dataSnapshot.val()),
-              rotateClass: this.rotateClassFor(dataSnapshot.val())
-          });
-        });
-    }
+  constructor(props) {
+    super(props);
+    CurrentStore.getCurrent();
+    this.state = {
+      city: props.city,
+      current: props.current
+    };
+  }
 
-    weatherIcon(currentlyObj) {
-        let iconSuffix = this.iconFor(currentlyObj);
-        console.log('iconSuffix: ' +  iconSuffix);
-        return `icon-weather-${iconSuffix}-dims`;
-    }
+  static getStores() {
+    return [CurrentStore];
+  }
 
-    iconFor(currentlyObj) {
-        if (_.endsWith(currentlyObj.icon, '-day')) {
-            let maxLen = currentlyObj.icon.length - currentlyObj.icon.indexOf('-day');
-            return _.trunc(currentlyObj.icon, maxLen);
-        }
-        return currentlyObj.icon;
-    }
+  static getPropsFromStores() {
+    return CurrentStore.getState();
+  }
 
-    rotateClassFor(currentlyObj) {
-        console.log('currentlyObj: ', currentlyObj);
-        return 'tx-rotate-' + currentlyObj.windBearing;
-    }
+  render() {
+    if (!this.props.current) {
+      return (
+        <Card style={{marginTop: '20px',
+                      flexFlow: 'row wrap',
+                      maxWidth: 1200,
+                      width: '100%'}}>
+          <CircularProgress mode="indeterminate"
+                            style={{
+                            flexGrow: 1,
+                            paddingTop: '20px',
+                            paddingBottom: '20px',
+                            margin: '0 auto',
+                            display: 'block',
+                            width: '120px'
+                            }}
+          />
 
-    render() {
-        let wxCurrIconClass = 'wx-gauge-icon-med ' + this.weatherIcon(this.state.currently);
-        return (
-        <Card>
-            <div style={{
+        </Card>
+      );
+    }
+    var current = this.props.current || {};
+    let summary = current.summary;
+    let feelsLike = Math.round(current.apparentTemperature);
+    let windSpeed = current.windSpeed;
+    let subtitle = `${summary}, feels like ${feelsLike} °F, wind at ${windSpeed} mph.`;
+    return (
+      <Card style={{marginTop: '20px'}}>
+        <CardHeader
+          title="Current Conditions"
+          subtitle={subtitle}
+          avatar={<Avatar icon={<ScheduleIcon />} />}
+          />
+        <div style={{
                 display: 'flex',
                 flexFlow: 'row wrap',
                 maxWidth: 1200,
                 width: '100%'
             }}>
-                <Card className={"wx-gauge"} style={{
-                        flexGrow: 1
-                      }}>
-                    <div className={"wx-curr-condition"}>
-                        <i className={wxCurrIconClass}></i>
-                    </div>
-                </Card>
-                <Card className={"wx-gauge"} style={{
-                        flexGrow: 1
-                      }}>
-                    <div className={"wx-curr-temp"}>
-                        <span className="wx-gauge-large">{this.state.currently.temperature} <sup>°F</sup></span>
-                    </div>
-                </Card>
-                <Card className={"wx-gauge"} style={{
-                        flexGrow: 1
-                      }}>
-                    <div className={"wx-curr-wind-dir"}>
-                        <span><ActionRoom className={this.state.rotateClass} /></span>
-                    </div>
-                </Card>
-            </div>
-        </Card>
-        );
-    }
+          <CurrentCondition val={current.icon} />
+          <CurrentWindDirection val={{windBearing: current.windBearing,
+                                    windSpeed: current.windSpeed}} />
+          <CurrentTemp val={{temperature: current.temperature,
+                                    feelsLikeTemp: current.apparentTemperature
+                                    }} />
+        </div>
+      </Card>
+    );
+  }
 }
 export default CurrentPanel;
