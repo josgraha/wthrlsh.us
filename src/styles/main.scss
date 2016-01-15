@@ -60,8 +60,8 @@ html {
 
 body {
     // background-color: $dark-grey;
-    //background-image: linear-gradient($cyan-900, $dark-grey);
-    background-image: url('/assets/images/#{$bg-body-nth}.jpg');
+    background-image: linear-gradient($cyan-900, lightcyan);
+    //background-image: url('/assets/images/#{$bg-body-nth}.jpg');
     //background-repeat: no-repeat;
     background-attachment: fixed;
 }
