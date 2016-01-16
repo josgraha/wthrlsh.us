@@ -17,6 +17,3 @@ Missing quite a few finishing touches.
 - Add routing.
 - Add search bar
 - Add forecast & historical data.
-
-## Known Issues
-- Current conditions widget layout not centered.
