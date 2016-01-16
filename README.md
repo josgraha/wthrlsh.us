@@ -5,6 +5,10 @@
 ## Description
 A beautiful weather experiment using React, Alt, ES6, ES7, Sass, and WebPack.  The beautiful part is how much fun it is.
 
+## Demo
+See the app live here:
+https://wthrlshus.firebaseapp.com
+
 ## Notes
 Missing quite a few finishing touches.
 - Tests.
