@@ -1,6 +1,7 @@
 import React from 'react';
 import mui from 'material-ui';
 import MapsEditLocationIcon from 'material-ui/lib/svg-icons/maps/edit-location';
+import AppConstants from '../utils/appconstants';
 import PanelDashboard from './PanelDashboard.jsx';
 import Actions from '../actions';
 import connectToStores from 'alt/utils/connectToStores';
@@ -19,40 +20,11 @@ const {
   Styles
   } = mui;
 
+const {Cities} = AppConstants;
 const {StylePropable, StyleResizable} = Mixins;
-let ThemeManager = Styles.ThemeManager;
-let DarkRawTheme = Styles.lightBaseTheme;
+let {ThemeManager, lightBaseTheme} = Styles;
+let DefaultTheme = lightBaseTheme;
 
-let cityMap = {
-  'austin': 'Austin',
-  'baltimore': 'Baltimore',
-  'boston': 'Boston',
-  'charlotte': 'Charlotte',
-  'chicago': 'Chicago',
-  'columbus': 'Columbus',
-  'dallas': 'Dallas',
-  'denver': 'Denver',
-  'elpaso': 'El Paso',
-  'houston': 'Houston',
-  'indianapolis': 'Indianapolis',
-  'jacksonville': 'Jacksonville',
-  'lasvegas': 'Las Vegas',
-  'losangeles': 'Los Angeles',
-  'memphis': 'Memphis',
-  'milwaukee': 'Milwaukee',
-  'newyork': 'New York',
-  'oklahomacity': 'Oklahoma City',
-  'philadelphia': 'Philadelphia',
-  'phoenix': 'Phoenix',
-  'portland': 'Portland',
-  'sanantonio': 'San Antonio',
-  'sandiego': 'San Diego',
-  'sanfrancisco': 'San Francisco',
-  'sanjose': 'San Jose',
-  'seattle': 'Seattle',
-  'tucson': 'Tucson',
-  'washington': 'Washington'
-};
 
 @connectToStores
 class App extends React.Component {
@@ -60,7 +32,7 @@ class App extends React.Component {
     super(props, context);
     this.onChange = this.onChange.bind(this);
     this.state = {
-      muiTheme: context.muiTheme ? context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
+      muiTheme: context.muiTheme ? context.muiTheme : ThemeManager.getMuiTheme(DefaultTheme),
       isThemeDark: false,
       dialogOpen: false,
       leftNavOpen: false
@@ -69,23 +41,13 @@ class App extends React.Component {
   }
 
   onChange(evt, selected) {
-    console.log('onChange: selected: ' + selected);
     if (!selected || selected == CurrentStore.getState()['city']) {
       return;
     }
-    console.log('CurrentStore: city: ' + CurrentStore.getState()['city']);
     let state = {city: selected};
     this.setState(state);
     CurrentStore.state = state;
     CurrentStore.getCurrent();
-  }
-
-  onItemTouchTap(item) {
-    console.log('onItemTouchTap: item: ', item);
-  }
-
-  cityName(key) {
-    return cityMap[key];
   }
 
   getChildContext() {
@@ -99,7 +61,6 @@ class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext){
-    console.log('componentWllReceiveProps: nextProps: ', nextProps);
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -125,14 +86,12 @@ class App extends React.Component {
 
   render() {
     let cityKey = this.state.city;
-    let cityName = this.cityName(cityKey);
-    let onItemTouchTap = this.onItemTouchTap;
-    var cityNodes = _(cityMap).keys()
+    let cityName = Cities[cityKey];
+    var cityNodes = _(Cities).keys()
           .map((k) => {
-            let cityName = cityMap[k];
+            let cityName = Cities[k];
             return (
             <MenuItem
-              onItemTouchTap={onItemTouchTap}
               value={k}
               primaryText={cityName} />
             );
@@ -154,7 +113,7 @@ class App extends React.Component {
                             {cityNodes}
                         </IconMenu>
                     }
-          iconElementRight={<ToolbarTitle text="Wthrlsh.us" />}
+          iconElementRight={<ToolbarTitle className="wx-app-title" text="Wthrlsh.us" style={{ fontSize: '2.5em' }} />}
         />
         <PanelDashboard city="newyork"/>
       </div>

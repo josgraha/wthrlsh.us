@@ -13,7 +13,6 @@ class CurrentStore {
 
   @bind(Actions.citySelected)
   citySelected(city) {
-    console.log('citySelected: city: ' + city);
     this.setState({
       city
     });
@@ -21,7 +20,6 @@ class CurrentStore {
 
   @bind(Actions.currentReceived)
   receivedCurrent(current) {
-    console.log('receivedCurrent: current: ', current);
       this.setState({
         current
       })

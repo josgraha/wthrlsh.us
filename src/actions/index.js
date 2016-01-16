@@ -11,7 +11,6 @@ class Actions {
   }
 
   current(args) {
-    console.log('Actions: current: invoked: args: ', args);
     return (dispatch) => {
       var firebaseRef = new Firebase(`https://publicdata-weather.firebaseio.com/${args.city}/currently`);
       firebaseRef.on("value", (dataSnapshot)=> {

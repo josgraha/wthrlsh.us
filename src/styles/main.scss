@@ -2,14 +2,19 @@
  * Main SASS styles
  */
 
-$bglist: acHKodQ, p550mah, WaFOpxG;
-$imgKey: random(length($bglist));
-$bg-body-nth: nth($bglist, $imgKey);
-$dark-grey: rgb(48, 48, 48);
+// theme color name
 $cyan-900: #006064;
+
+
+// icon scaling constants
 $lrg-scale-factor: 3;
-$lrg-offset-x: 10;
+$lrg-offset-x: 40;
 $lrg-offset-y: 40;
+
+$title-font: Rancho;
+@import url(http://fonts.googleapis.com/css?family=#{$title-font});
+
+$bg-color: $cyan-900;
 
 @mixin linear-gradient($direction, $color-stops...) {
    background: nth(nth($color-stops, 1), 1);
@@ -59,11 +64,14 @@ html {
 }
 
 body {
-    // background-color: $dark-grey;
-    background-image: linear-gradient($cyan-900, lightcyan);
-    //background-image: url('/assets/images/#{$bg-body-nth}.jpg');
-    //background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: linear-gradient($bg-color, lightcyan);
+}
+
+.wx-app-title {
+  line-height: 1em;
+  font-family: $title-font;
+  color: rgba(darken($bg-color, 25%),0.6);
+  @include transform(translate(-15%, -15%));
 }
 
 .wx-gauge {
@@ -103,4 +111,18 @@ body {
 
 .wx-gauge-icon-lrg.wx-curr-wind-dir > svg {
   fill-opacity: 0.8;
+}
+
+//#app > div > div:nth-child(2) > div > div > div:nth-child(2) > div:nth-child(4) > div > div > div > div > table > tbody > tr:nth-child(5) > td:nth-child(1)
+.wx-detail-table > tbody > tr > td:nth-child(1) {
+  display: none;
+}
+
+.wx-detail-table > thead > tr > th:nth-child(1) {
+  display: none;
+}
+
+.wx-gauge-media-header {
+  height: 60px;
+  overflow: hidden;
 }

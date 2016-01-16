@@ -12,7 +12,6 @@ const {
 class CurrentTemp extends React.Component {
   constructor(props) {
     super(props);
-    console.log('CurrentTemp: props: ', props);
     this.state = {
       temperature: props.val.temperature,
       feelsLikeTemp: props.val.feelsLikeTemp
@@ -27,9 +26,9 @@ class CurrentTemp extends React.Component {
       <Card className="wx-gauge" style={{
                         flexGrow: 1
                       }}>
-        <CardMedia
+        <CardMedia className="wx-gauge-media-header"
           overlay={<CardTitle title="Temp"/>} style={{textAlign: 'center'}}>
-          <img src="http://lorempixel.com/144/84/city/"/>
+          <img src="http://lorempixel.com/144/80/city/"/>
         </CardMedia>
         <CardText>
           Feels like {feelsLikeTemp}°.

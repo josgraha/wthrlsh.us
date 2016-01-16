@@ -7,7 +7,6 @@ let firebaseRef = null;
 let ChannelSource = {
   getCurrent: {
     remote(state) {
-      console.log('ChannelSource: remote: state: ', state);
       return new Promise((resolve, reject) => {
         if (firebaseRef) {
           firebaseRef.off();

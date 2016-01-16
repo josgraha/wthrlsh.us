@@ -6,6 +6,7 @@ import _ from 'lodash';
 import CurrentCondition from './CurrCondition.jsx';
 import CurrentTemp from './CurrTemp.jsx';
 import CurrentWindDirection from './CurrWindDirection.jsx';
+import CurrDetails from './CurrDetails.jsx';
 import Actions from '../../actions';
 import connectToStores from 'alt/utils/connectToStores';
 import CurrentStore from '../../stores/CurrentStore';
@@ -83,6 +84,7 @@ class CurrentPanel extends React.Component {
           <CurrentTemp val={{temperature: current.temperature,
                                     feelsLikeTemp: current.apparentTemperature
                                     }} />
+          <CurrDetails current={current} />
         </div>
       </Card>
     );

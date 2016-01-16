@@ -20,17 +20,8 @@ class CurrentWindDirection extends React.Component {
   }
 
   rotateClassFor(windBearing) {
-    console.log('windBearing: ' + windBearing);
     return 'tx-rotate-lrg-' + windBearing;
   }
-
-  //componentWillReceiveProps(nextProps, nextContext) {
-  //  console.log('componentWllReceiveProps: nextProps: ', nextProps);
-  //  if (this.state.windBearing != nextProps.windBearing) {
-  //    this.state.windBearing = nextProps.windBearing;
-  //    this.state.windSpeed = nextProps.windSpeed;
-  //  }
-  //}
 
   render() {
     let propsVal = this.props.val;
@@ -39,9 +30,9 @@ class CurrentWindDirection extends React.Component {
       <Card className="wx-gauge" style={{
                     flexGrow: 1
                   }}>
-        <CardMedia
+        <CardMedia className="wx-gauge-media-header"
           overlay={<CardTitle title="Wind" />}>
-          <img src="http://lorempixel.com/144/84/nature/"/>
+          <img src="http://lorempixel.com/144/80/nature/"/>
         </CardMedia>
         <CardText>{propsVal.windBearing}° / {propsVal.windSpeed} mph</CardText>
         <div className="wx-gauge-icon-lrg wx-curr-wind-dir">

@@ -35,7 +35,6 @@ class CurrentCondition extends React.Component {
 
   weatherIcon(icon) {
     let iconSuffix = this.iconFor(icon);
-    console.log('iconSuffix: ' + iconSuffix);
     return `icon-weather-${iconSuffix}-lrg`;
   }
 
@@ -55,9 +54,9 @@ class CurrentCondition extends React.Component {
       <Card className="wx-gauge" style={{
                 flexGrow: 1
               }}>
-        <CardMedia
+        <CardMedia className="wx-gauge-media-header"
           overlay={<CardTitle title="Conditions" />}>
-          <img src="http://lorempixel.com/144/84/abstract/"/>
+          <img src="http://lorempixel.com/144/80/abstract/"/>
         </CardMedia>
         <CardText>{description}</CardText>
         <div className="wx-curr-condition">
