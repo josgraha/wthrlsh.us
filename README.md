@@ -12,3 +12,11 @@ Missing quite a few finishing touches.
 - More interaction or logic to test.
 - More widgets with historical data.
 - Thanks to Firebase for the awesome public data.
+
+## Roadmap
+- Add routing.
+- Add search bar
+- Add forecast & historical data.
+
+## Known Issues
+- Current conditions widget layout not centered.

@@ -8,11 +8,11 @@ $cyan-900: #006064;
 
 // icon scaling constants
 $lrg-scale-factor: 3;
-$lrg-offset-x: 40;
-$lrg-offset-y: 40;
+$lrg-offset-x: 10;
+$lrg-offset-y: 10;
 
 $title-font: Rancho;
-@import url(http://fonts.googleapis.com/css?family=#{$title-font});
+@import url(//fonts.googleapis.com/css?family=#{$title-font});
 
 $bg-color: $cyan-900;
 
@@ -55,6 +55,11 @@ $tx-rotate-lrg-class: tx-rotate-lrg !default
 
 @for $i from 0 through 360 {
   .#{$tx-rotate-lrg-class}-#{$i} {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    //width: 144px;
+    //height: 144px;
     @include transform(matrix($lrg-scale-factor, 0, 0, $lrg-scale-factor, $lrg-offset-x, $lrg-offset-y) rotate(#{$i - 180}deg));
   }
 }
@@ -87,6 +92,7 @@ body {
   width: 144px;
   height: 144px;
   position: relative;
+  left: 28%;
   overflow: hidden;
 }
 
