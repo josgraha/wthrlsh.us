@@ -48,7 +48,9 @@ class CurrentCondition extends React.Component {
   }
 
   render() {
-    let wxCurrIconClass = 'wx-gauge-icon-lrg ' + this.weatherIcon(this.props.val);
+    let wxCurrIconClass = 'wx-gauge-icon-lrg ' +
+                    'wx-gauge-icon-condition ' +
+                    this.weatherIcon(this.props.val);
     let description = this.toDesc(this.props.val);
     return (
       <Card className="wx-gauge" style={{
@@ -58,8 +60,8 @@ class CurrentCondition extends React.Component {
           overlay={<CardTitle title="Conditions" />}>
           <img src="http://lorempixel.com/144/80/abstract/"/>
         </CardMedia>
-        <CardText>{description}</CardText>
-        <div className="wx-curr-condition">
+        <CardText className="wx-gauge-label" style={{padding: '8px 16px 8px 16px'}}>{description}</CardText>
+        <div className="wx-gauge-lrg">
           <div className={wxCurrIconClass}></div>
         </div>
       </Card>

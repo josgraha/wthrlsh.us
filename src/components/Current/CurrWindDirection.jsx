@@ -25,7 +25,10 @@ class CurrentWindDirection extends React.Component {
 
   render() {
     let propsVal = this.props.val;
-    let rotateClass = this.rotateClassFor(propsVal.windBearing);
+    let wxCurrIconClass = 'wx-gauge-icon-lrg ' +
+        'wx-gauge-icon-wind-dir ' +
+        'icon-weather-compass-north ' +
+        this.rotateClassFor(propsVal.windBearing);
     return (
       <Card className="wx-gauge" style={{
                     flexGrow: 1
@@ -34,9 +37,9 @@ class CurrentWindDirection extends React.Component {
           overlay={<CardTitle title="Wind" />}>
           <img src="http://lorempixel.com/144/80/nature/"/>
         </CardMedia>
-        <CardText>{propsVal.windBearing}° / {propsVal.windSpeed} mph</CardText>
-        <div className="wx-gauge-icon-lrg wx-curr-wind-dir">
-          <ActionRoom className={rotateClass}/>
+        <CardText className="wx-gauge-label" style={{padding: '8px 16px 8px 16px'}}>{propsVal.windBearing}° / {propsVal.windSpeed} mph</CardText>
+        <div className="wx-gauge-lrg">
+          <div className={wxCurrIconClass}></div>
         </div>
       </Card>
     );

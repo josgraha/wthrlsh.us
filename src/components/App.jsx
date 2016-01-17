@@ -113,7 +113,10 @@ class App extends React.Component {
                             {cityNodes}
                         </IconMenu>
                     }
-          iconElementRight={<ToolbarTitle className="wx-app-title" text="Wthrlsh.us" style={{ fontSize: '2.5em' }} />}
+          iconElementRight={<ToolbarTitle className="wx-app-title" text="Wthrlsh.us"
+          style={{
+            fontSize: '1.5em'
+          }} />}
         />
         <PanelDashboard city="newyork"/>
       </div>

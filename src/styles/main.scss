@@ -8,8 +8,8 @@ $cyan-900: #006064;
 
 // icon scaling constants
 $lrg-scale-factor: 3;
-$lrg-offset-x: 10;
-$lrg-offset-y: 10;
+$lrg-offset-x: 5;
+$lrg-offset-y: -12;
 
 $title-font: Rancho;
 @import url(//fonts.googleapis.com/css?family=#{$title-font});
@@ -58,8 +58,6 @@ $tx-rotate-lrg-class: tx-rotate-lrg !default
     position: absolute;
     top: 30%;
     left: 30%;
-    //width: 144px;
-    //height: 144px;
     @include transform(matrix($lrg-scale-factor, 0, 0, $lrg-scale-factor, $lrg-offset-x, $lrg-offset-y) rotate(#{$i - 180}deg));
   }
 }
@@ -80,55 +78,72 @@ body {
 }
 
 .wx-gauge {
+
   text-align: center;
+
+  &-media-header {
+    height: 60px;
+    overflow: hidden;
+  }
+
+  &-icon-med {
+    width: 48px;
+    height: 48px;
+  }
+
+  &-lrg {
+    height: 144px;
+    margin: 0 10px 10px 10px;
+  }
+
+  &-icon-lrg {
+    width: 80px;
+    height: 80px;
+    left: 28%;
+    overflow: hidden;
+  }
+
+  &-text-lrg {
+    color: #001A33;
+  }
+
+  &-label {
+  }
+
+  &-icon {
+    &-condition {
+      position: relative;
+      height: 144px;
+      left: 20%;
+    }
+
+    &-wind-dir {
+      position: relative;
+      opacity: 0.6;
+    }
+  }
+
+  &-curr {
+    &-temp {
+      position: relative;
+      font-size: 5rem;
+      margin-top: 5%;
+      margin-left: 2%;
+      color: darkviolet;
+    }
+
+    &-temp sup {
+      font-size: 2rem;
+    }
+  }
 }
 
-.wx-gauge-icon-med {
-  width: 48px;
-  height: 48px;
-}
+.wx-detail {
+  &-table > tbody > tr > td:nth-child(1) {
+    display: none;
+  }
 
-.wx-gauge-icon-lrg {
-  width: 144px;
-  height: 144px;
-  position: relative;
-  left: 28%;
-  overflow: hidden;
-}
-
-.wx-curr-condition {
-  with: 144px;
-  height: 144px;
-}
-
-.wx-gauge-large {
-  color: #001A33;
-}
-
-.wx-curr-temp {
-  font-size: 2.75rem;
-  margin-top: 20px;
-  color: darkviolet;
-}
-
-.wx-curr-temp sup {
-  font-size: 1.5rem;
-}
-
-.wx-gauge-icon-lrg.wx-curr-wind-dir > svg {
-  fill-opacity: 0.8;
-}
-
-//#app > div > div:nth-child(2) > div > div > div:nth-child(2) > div:nth-child(4) > div > div > div > div > table > tbody > tr:nth-child(5) > td:nth-child(1)
-.wx-detail-table > tbody > tr > td:nth-child(1) {
-  display: none;
-}
-
-.wx-detail-table > thead > tr > th:nth-child(1) {
-  display: none;
-}
-
-.wx-gauge-media-header {
-  height: 60px;
-  overflow: hidden;
+  &-table > thead > tr > th:nth-child(1) {
+    display: none;
+  }
 }
