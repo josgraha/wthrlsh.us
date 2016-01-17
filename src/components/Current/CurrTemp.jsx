@@ -30,11 +30,11 @@ class CurrentTemp extends React.Component {
           overlay={<CardTitle title="Temp"/>} style={{textAlign: 'center'}}>
           <img src="http://lorempixel.com/144/80/city/"/>
         </CardMedia>
-        <CardText>
+        <CardText className="wx-gauge-label" style={{padding: '8px 16px 8px 16px'}}>
           Feels like {feelsLikeTemp}°.
         </CardText>
-        <div className={"wx-gauge-large"}>
-          <div className="wx-curr-temp">{currentTemp}<sup>°F</sup></div>
+        <div className="wx-gauge-text-lrg">
+          <div className="wx-gauge-curr-temp">{currentTemp}<sup>°F</sup></div>
         </div>
       </Card>
     );
